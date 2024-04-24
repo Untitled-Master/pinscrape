@@ -82,19 +82,7 @@ class PinterestImageScraper:
         return sum([2 ** i for (i, v) in enumerate(diff.flatten()) if v])
 
     # ------------------------------  save all downloaded images to folder ---------------------------
-    def saving_op(self, var):
-        url_list, folder_name = var
-        if not os.path.exists(os.path.join(os.getcwd(), folder_name)):
-                os.mkdir(os.path.join(os.getcwd(), folder_name))
-        for img in url_list:
-            result = get(img, stream=True).content
-            file_name = img.split("/")[-1]
-            file_path = os.path.join(os.getcwd(), folder_name, file_name)
-            img_arr = np.asarray(bytearray(result), dtype="uint8")
-            image = cv2.imdecode(img_arr, cv2.IMREAD_COLOR)
-            if not self.dhash(image) in self.unique_img:
-                cv2.imwrite(file_path, image)
-            self.unique_img.append(self.dhash(image))
+#removed
 
     # ------------------------------  download images from image url list ----------------------------
     def download(self, url_list, num_of_workers, output_folder):
