@@ -85,13 +85,7 @@ class PinterestImageScraper:
 #removed
 
     # ------------------------------  download images from image url list ----------------------------
-    def download(self, url_list, num_of_workers, output_folder):
-        idx = len(url_list) // num_of_workers if len(url_list) > 9 else len(url_list)
-        param = []
-        for i in range(num_of_workers):
-            param.append((url_list[((i*idx)):(idx*(i+1))], output_folder))
-        with ThreadPoolExecutor(max_workers=num_of_workers) as executor:
-            executor.map(self.saving_op, param)
+#removed
 
     # -------------------------- get user keyword and google search for that keywords ---------------------
     @staticmethod
@@ -126,15 +120,6 @@ class PinterestImageScraper:
         }
 
         # download images from saved images url
-        if len(url_list):
-            try:
-                out_folder = output_folder if output_folder else key
-                self.download(url_list, threads, out_folder)
-            except KeyboardInterrupt:
-                return return_data
-            
-            return_data["isDownloaded"] = True
-            return return_data
         
         return return_data
 
